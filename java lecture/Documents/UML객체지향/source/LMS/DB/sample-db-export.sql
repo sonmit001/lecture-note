@@ -1,0 +1,33 @@
+CALL SYSCS_UTIL.SYSCS_EXPORT_TABLE 
+   (null,'PUBLICATION','C:\LMS\DB\DATA\Publication.dat', '; ','%', 'KSC5601');
+
+CALL SYSCS_UTIL.SYSCS_EXPORT_TABLE 
+   (null,'PUBLICATIONITEM','C:\LMS\DB\DATA\PublicationItem.dat', '; ','%', 'KSC5601');
+
+CALL SYSCS_UTIL.SYSCS_EXPORT_TABLE 
+   (null,'BOOK','C:\LMS\DB\DATA\Book.dat', '; ','%', 'KSC5601');
+
+CALL SYSCS_UTIL.SYSCS_EXPORT_TABLE 
+   (null,'BOOKITEM','C:\LMS\DB\DATA\BookItem.dat', '; ','%', 'KSC5601');
+
+CALL SYSCS_UTIL.SYSCS_EXPORT_TABLE 
+   (null,'PERIODICAL','C:\LMS\DB\DATA\Periodical.dat', '; ','%', 'KSC5601');
+
+CALL SYSCS_UTIL.SYSCS_EXPORT_TABLE 
+   (null,'PERIODICALITEM','C:\LMS\DB\DATA\PeriodicalItem.dat', '; ','%', 'KSC5601');
+
+CALL SYSCS_UTIL.SYSCS_EXPORT_TABLE 
+   (null,'BOOKBORROW','C:\LMS\DB\DATA\BookBorrow.dat', '; ','%', 'KSC5601');
+
+CALL SYSCS_UTIL.SYSCS_EXPORT_TABLE 
+   (null,'BOOKORDER','C:\LMS\DB\DATA\BookOrder.dat', '; ','%', 'KSC5601');
+
+CALL SYSCS_UTIL.SYSCS_EXPORT_TABLE 
+   (null,'LIBRARYUSER','C:\LMS\DB\DATA\LibraryUser.dat', '; ','%', 'KSC5601');
+
+CALL SYSCS_UTIL.SYSCS_EXPORT_TABLE 
+   (null,'BOOK_LIBRARYUSER','C:\LMS\DB\DATA\Book_LibraryUser.dat', '; ','%', 'KSC5601');
+
+CALL SYSCS_UTIL.SYSCS_EXPORT_TABLE 
+   (null,'SEQUENCE','C:\LMS\DB\DATA\Sequence.dat', '; ','%', 'KSC5601');
+

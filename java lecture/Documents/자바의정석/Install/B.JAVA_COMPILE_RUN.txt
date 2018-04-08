@@ -1,0 +1,87 @@
+윈도우버튼-->cmd enter
+C:\Users\Administrator>cd C:\Program Files\Java\jdk1.7.0_51\bin
+C:\Program Files\Java\jdk1.7.0_51\bin>dir
+ C 드라이브의 볼륨에는 이름이 없습니다.
+ 볼륨 일련 번호: 16F2-5466
+
+ C:\Program Files\Java\jdk1.7.0_51\bin 디렉터리
+
+2014-02-04  오후 12:31    <DIR>          .
+2014-02-04  오후 12:31    <DIR>          ..
+2014-02-04  오후 12:31            15,752 appletviewer.exe
+2014-02-04  오후 12:31            15,752 apt.exe
+2014-02-04  오후 12:31            15,752 extcheck.exe
+2014-02-04  오후 12:31            15,752 idlj.exe
+2014-02-04  오후 12:31            55,688 jabswitch.exe
+2014-02-04  오후 12:31            15,752 jar.exe
+2014-02-04  오후 12:31            15,752 jarsigner.exe
+...
+C:\Program Files\Java\jdk1.7.0_51\bin>javac
+Usage: javac <options> <source files>
+where possible options include:
+  -g                         Generate all debugging info
+  -g:none                    Generate no debugging info
+  -g:{lines,vars,source}     Generate only some debugging info
+...
+
+C:\Program Files\Java\jdk1.7.0_51\bin>javac HelloWorld.java
+javac: file not found: HelloWorld.java
+Usage: javac <options> <source files>
+use -help for a list of possible options
+
+C:\Program Files\Java\jdk1.7.0_51\bin>
+C:\Program Files\Java\jdk1.7.0_51\bin>cd D:\JAVA_FRAMEWORK\ch1
+
+C:\Program Files\Java\jdk1.7.0_51\bin>d:
+
+D:\JAVA_FRAMEWORK\ch1>dir
+ D 드라이브의 볼륨에는 이름이 없습니다.
+ 볼륨 일련 번호: 847F-3EEA
+
+ D:\JAVA_FRAMEWORK\ch1 디렉터리
+
+2014-02-04  오후 12:46    <DIR>          .
+2014-02-04  오후 12:46    <DIR>          ..
+2014-02-04  오후 12:46                30 HelloWorld.java
+               1개 파일                  30 바이트
+               2개 디렉터리  79,563,763,712 바이트 남음
+D:\JAVA_FRAMEWORK\ch1>javac
+'javac'은(는) 내부 또는 외부 명령, 실행할 수 있는 프로그램, 또는
+배치 파일이 아닙니다.
+***PATH환경변수설정후*****
+D:\JAVA_FRAMEWORK\ch1>javac -version
+javac 1.7.0_51
+D:\JAVA_FRAMEWORK\ch1>set path
+Path=C:\Program Files\Java\jdk1.7.0_51\b
+lient_1\bin;F:\app\Administrator\product
+....
+D:\JAVA_FRAMEWORK\ch1>javac HelloWorld.java
+
+D:\JAVA_FRAMEWORK\ch1>dir
+ D 드라이브의 볼륨에는 이름이 없습니다.
+ 볼륨 일련 번호: 847F-3EEA
+
+ D:\JAVA_FRAMEWORK\ch1 디렉터리
+
+2014-02-04  오후 02:50    <DIR>          .
+2014-02-04  오후 02:50    <DIR>          ..
+2014-02-04  오후 02:50               194 HelloWorld.class
+2014-02-04  오후 12:46                30 HelloWorld.java
+               2개 파일                 224 바이트
+               2개 디렉터리  79,563,763,712 바이트 남음
+
+D:\JAVA_FRAMEWORK\ch1>java HelloWorld
+오류: HelloWorld 클래스에서 기본 메소드를 찾을 수 없습니다. 다음 형식으로 기본
+메소드를 정의하십시오.
+   public static void main(String[] args)
+
+D:\JAVA_FRAMEWORK\ch1>javac HelloWorld.java
+
+D:\JAVA_FRAMEWORK\ch1>java HelloWorld
+Hello World!!
+
+
+
+
+
+

@@ -1,0 +1,77 @@
+/*
+ * After modifying this style sheet, refresh the page being designed to see the effect of the modification.
+ * Click the Refresh button in the Visual Designer toolbar to refresh the page.
+ */ 
+
+/* Style rules to make Java Server faces Standarad data tables look better */
+body {
+  font-family:'Malgun Gothic' !important;
+  font-size:10pt;
+}
+
+.list-header {
+  background-color: #eeeeee;
+  font-size: larger;
+  font-weight: bold;
+}
+.page-title {
+  font-size: 16pt;
+  font-weight: bold;
+  font-family: 'Malgun Gothic';
+  vertical-align: middle;
+  text-align: center;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-right-style: solid;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-top-color: purple;
+  border-bottom-color: purple;
+  border-left-color: purple;
+  border-right-color: purple;
+  border-top-width: 4px;
+  border-bottom-width: 4px;
+  border-left-width: 4px;
+  border-right-width: 4px;
+}
+
+.list-paging-header {
+  background-color: white;
+}
+
+.list-paging-footer {
+  background-color: white;
+}
+
+.list-row-even { 
+}
+
+.list-row-odd { 
+  background-color: #eeeeee;
+}
+
+/* Style rules for message severity levels */
+
+.infoMessage {
+  color: black;
+}
+
+.warnMessage {
+  color: orange;
+  font-weight: bold;
+}
+
+.errorMessage {
+  color: red;
+  font-weight: bold;
+}
+
+.fatalMessage {
+  color: red;
+  font-style: italic;
+  font-weight: bold;
+}
+

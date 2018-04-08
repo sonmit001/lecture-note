@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="lms/book/publication/PublicationRegistration.jsp" x="119" y="204" zoom="true"/>
+        <Node id="lms/book/search/BookDetailedView.jsp" x="528" y="563" zoom="true"/>
+        <Node id="lms/user/member/UserMain.jsp" x="74" y="1133" zoom="false"/>
+        <Node id="lms/book/publication/PublicationList.jsp" x="150" y="75" zoom="true"/>
+        <Node id="lms/book/publication/PublicationItemList.jsp" x="519" y="201" zoom="true"/>
+        <Node id="lms/book/publication/PublicationItemRegistration.jsp" x="498" y="74" zoom="true"/>
+        <Node id="lms/book/order/OrderList.jsp" x="150" y="150" zoom="true"/>
+        <Node id="lms/user/member/UserList.jsp" x="62" y="941" zoom="true"/>
+        <Node id="lms/user/member/LibrarianMenu.jsp" x="801" y="695" zoom="true"/>
+        <Node id="lms/user/member/UserRegistration.jsp" x="608" y="922" zoom="true"/>
+        <Node id="lms/book/search/PeriodicalDetailedView.jsp" x="59" y="802" zoom="true"/>
+        <Node id="lms/user/member/UserBorrowStatus.jsp" x="478" y="1110" zoom="true"/>
+        <Node id="lms/common/Page1.jsp" x="529" y="1234" zoom="true"/>
+        <Node id="lms/borrowandreturn/BorrowRequest.jsp" x="486" y="420" zoom="true"/>
+        <Node id="lms/book/search/PublicationSearch.jsp" x="56" y="598" zoom="false"/>
+        <Node id="lms/book/publication/PublicationViewEdit.jsp" x="324" y="313" zoom="true"/>
+        <Node id="lms/user/login/Login.jsp" x="512" y="773" zoom="false"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>
