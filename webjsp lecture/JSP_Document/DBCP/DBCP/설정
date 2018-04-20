@@ -1,0 +1,80 @@
+*DBCP 설정을 위한 방법
+
+1.필요한 jar 파일 다운로드 사이트 
+
+ http://archive.apache.org/dist/jakarta/commons/
+ 	-http://archive.apache.org/dist/commons/pool/ 필수 
+    -http://archive.apache.org/dist/commons/dbcp/ 필수 
+    -http://archive.apache.org/dist/commons/collections/
+ http://tomcat.apache.org/tomcat-7.0-doc/jndi-resources-howto.html
+ 
+ 2. 필요한 jar 파일 참조
+ WEB-INF > lib > 
+ commons-dbcp-1.4.jar
+ commons-pool-1.6.jar
+ ojdbc6.jar (오라클 11g)
+ 
+ 3.설정파일 만들기 (*.jocl)
+ -연결설정하기
+  <object class="org.apache.commons.dbcp.DriverManagerConnectionFactory">
+      <string value="jdbc:oracle:thin:@localhost:1521:ORCL" />
+      <string value="scott" />
+      <string value="1004" />
+   </object>
+ -pool옵션 설정하기
+ <int value="10" />  <!-- maxActive -->
+ <byte value="1" />  <!-- whenExhaustedAction -->
+ <long value="10000" /> <!-- maxWait -->
+ <int value="10" /> <!-- maxIdle -->
+ <int value="3" /> <!-- minIdle -->
+ <boolean value="true" /> <!-- testOnBorrow -->
+ <boolean value="true" /> <!-- testOnReturn -->
+ <long value="600000" /> <!-- timeBetweenEvctionRunsMillis -->
+ <int value="5" /> <!-- numTestsPerEvictionRun -->
+ <long value="3600000" /> <!-- minEvictableIdleTimeMillis -->
+ <boolean value="true" /> <!-- testWhileIdle -->
+ 
+maxActive	 : 커넥션 풀이 제공할 최대 커넥션 개수
+whenExhaustedAction	 : 커넥션 풀에서 가져올 수 있는 커넥션이 없을 때 어떻게 동작할지를 지정한다.
+ 1일 경우 maxWait 속성에서 지정한 시간만큼 커넥션을 구할 때 까지 기다리며, 
+ 0일 경우 에러를 발생시킨다. 
+ 2일 경우에는 일시적으로 커넥션을 생성해서 사용한다.
+maxWait	
+whenExhaustedAction : 속성의 값이 1일 때 사용되는 대기 시간. 
+단위는 1/1000초이며, 0 보다 작을 경우 무한히 대기한다.
+maxIdle :	사용되지 않고 풀에 저장될 수 있는 최대 커넥션 개수. 음수일 경우 제한이 없다.
+minIdle	 :사용되지 않고 풀에 저장될 수 있는 최소 커넥션 개수.
+testOnBorrow :	true일 경우 커넥션 풀에서 커넥션을 가져올 때 커넥션이 유효한지의 여부를 검사한다.
+testOnReturn :	true일 경우 커넥션 풀에 커넥션을 반환할 때 커넥션이 유효한지의 여부를 검사한다.
+timeBetweenEvctionRunsMillis :	사용되지 않은 커넥션을 추출하는 쓰레드의 실행 주기를 지정한다. 양수가 아닐 경우 실행되지 않는다. 단위는 1/1000 초이다.
+numTestsPerEvictionRun :	사용되지 않는 커넥션을 몇 개 검사할지 지정한다.
+minEvictableIdleTimeMillis :	사용되지 않는 커넥션을 추출할 때 이 속성에서 지정한 시간 이상 비활성화 상태인 커넥션만 추출한다. 양수가 아닌 경우 비활성화된 시간으로는 풀에서 제거되지 않는다. 시간 단위는 1/1000초이다.
+testWhileIdle :	true일 경우 비활성화 커넥션을 추출할 때 커넥션이 유효한지의 여부를 검사해서 유효하지 않은 커넥션은 풀에서 제거한다.
+ 
+4. 서블릿 파일 만들기 
+   (정보 읽기) => Init()
+   
+   <servlet>
+  	<servlet-name>DBCPInit</servlet-name>
+  	<servlet-class>JDBC.loader.DBCPInit</servlet-class>
+  	  	<init-param>
+	  		<param-name>jdbcdriver</param-name>
+	  		<param-value>oracle.jdbc.OracleDriver</param-value>
+	  	</init-param>
+	  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  위 설정을 통해서 사이트 구동시 (첫 요청)  ->  DBCPInit 서블릿을 구동하겠다
+  -> DBCPInit 구동되면서 필요한 초기값을 xml에서 설정으로 보낼 수 있다
+  
+  <load-on-startup>1</load-on-startup> 을 이용해서 톰켓 구동시 최초 실행을 보장
+   
+   
+  5. jsp 구현
+  String jdbcDriver = "jdbc:apache:commons:dbcp:/pool"; 
+    
+ /pool 은 source -> pool.jocl 설정 파일 가져오기
+    
+    
+    
+    
+ 

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<taglib
+    xsi:schemaLocation=
+    "http://java.sun.com/xml/ns/javaee web-
+        jsptaglibrary_2_1.xsd"
+    xmlns="http://java.sun.com/xml/ns/javaee"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     version="2.1">
+
+  <tlib-version>1.0</tlib-version>
+  <short-name>tags</short-name>
+
+  <tag>
+	<name>message</name>
+	<path>/META-INF/tags/message.tag</path>
+  </tag>
+  
+  <tag>
+	<name>tagBody</name>
+	<path>/META-INF/tags/tagBody.tag</path>
+  </tag>
+  
+  <tag>
+	<name>attribute</name>
+	<path>/META-INF/tags/attribute.tag</path>
+  </tag>
+  
+  <tag>
+	<name>variable</name>
+	<path>/META-INF/tags/variable.tag</path>
+  </tag>
+  
+  <tag>
+	<name>variable2</name>
+	<path>/META-INF/tags/variable2.tag</path>
+  </tag>
+  
+  <tag>
+	<name>variable3</name>
+	<path>/META-INF/tags/variable3.tag</path>
+  </tag>
+</taglib>
