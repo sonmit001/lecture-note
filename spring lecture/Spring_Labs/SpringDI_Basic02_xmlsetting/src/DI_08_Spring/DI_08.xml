@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!-- 
+	IOC 컨테이너 (Spring 전용 메모리 공간) 안에 생성될 객체를 만들고 조립(의존) 관계 설정하는 파일. 
+	JobExcute jobexcute = new JobExcute("kang",100); //생성자 주입
+	ArticleDao articledao = new ArticleDao();
+	jobexcute.setArticledao(articledao); //setter주입 주소
+	jobexcute.setData(500); // setter주입 값	
+	
+	1.<constructor-arg>는 순서를 인정한다.
+	2.<value> 에 type이 명시되지 않으면 Defalut는 String이다.
+--> 
+	<bean id="jobexcute" class="DI_08_Spring.JobExcute">
+		<constructor-arg>
+			<value>kang</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value type="long">100</value>
+		</constructor-arg>
+		<!-- jobexcute.setArticledao(articledao) -->
+		<property name="articledao">
+			<ref bean="articleDAO"/>
+		</property>
+		<!-- jobexcute.setData(500); -->
+		<property name="data">
+			<value>500</value> <!-- 자동으로 형변환이 일어난다. -->
+		</property>
+	</bean>
+	<bean id="articleDAO" class="DI_08_Spring.ArticleDao"></bean>
+</beans>

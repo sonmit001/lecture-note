@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+
+<bean id="Receipt" class="AOP_Homework_Receipt.NewReceipt"></bean> 
+<bean id="receiptAroundAdvice" class="AOP_Homework_Receipt.ReceiptAroundAdvice"></bean> 
+
+
+<bean id="regexpMethodPointcutAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+	<property name="patterns">
+		<list>
+			<value>.*print.*</value>
+		</list>
+	</property>
+	<property name="advice" ref="receiptAroundAdvice"></property>
+</bean>
+
+
+<!-- 2단계 -->
+<bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+	<property name="proxyInterfaces">
+		<list>
+			<value>AOP_Homework_Receipt.Receipt</value><!-- 인터페이스를 통해서 행위 정보  -->
+		</list>
+	</property>
+	<property name="target" ref="Receipt"></property><!-- 실객체 정보 -->
+	<property name="interceptorNames"> <!-- handler 정보(Advice) -->
+		<list>
+			<!-- 	
+			<value>logPrintAroundAdvice</value>
+			<value>logPrintBeforeAdvice</value> 
+			<value>logPrintAfterAdvice</value>
+			 -->
+			 <value>regexpMethodPointcutAdvisor</value>
+		</list>
+	</property>
+</bean>
+
+</beans>
+
+
+
