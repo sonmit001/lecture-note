@@ -10,7 +10,7 @@
 	
 	function connect() {
 		wsocket = new WebSocket(
-				"ws://localhost:8080/spring4-chap09-ws/chat-ws");
+				"ws://localhost:8090/spring4-chap09-ws/chat-ws");
 		wsocket.onopen = onOpen;
 		wsocket.onmessage = onMessage;
 		wsocket.onclose = onClose;
