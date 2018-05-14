@@ -11,7 +11,7 @@
 	
 	function connect() {
 		wsocket = new SockJS(
-				"http://localhost:8080/spring4-chap09-ws/chat.sockjs");
+				"http://localhost:8090/spring4-chap09-ws/chat.sockjs");
 		wsocket.onopen = onOpen;
 		wsocket.onmessage = onMessage;
 		wsocket.onclose = onClose;

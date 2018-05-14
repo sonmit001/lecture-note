@@ -12,7 +12,7 @@
 	
 	var sock;
 	function sendMessage() {
-		sock = new SockJS("http://localhost:8080/spring4-chap09-ws/echo.sockjs");
+		sock = new SockJS("http://localhost:8090/spring4-chap09-ws/echo.sockjs");
 		sock.onmessage = onMessage;
 		sock.onclose = onClose;
 		sock.onopen = function() {
