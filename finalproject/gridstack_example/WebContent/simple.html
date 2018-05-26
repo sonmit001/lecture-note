@@ -26,10 +26,13 @@
 	        center: 'title',
 	        right: 'month,agendaWeek,agendaDay,listMonth'
 	      },
+	      
 	      defaultDate: '2018-03-12',
 	      navLinks: true, // can click day/week names to navigate views
 	      businessHours: true, // display business hours
 	      editable: true,
+	      contentHeight: 'auto',
+		    height: 'auto',
 	      events: [
 	        {
 	          title: 'Business Lunch',
@@ -97,7 +100,8 @@
 		  }
 		
 		  #calendar {
-		    max-width: 500px;
+		    
+		    width:auto%;
 		    margin: 0 auto;
 		  }
 		
@@ -110,10 +114,17 @@
 	            color: #2c3e50;
 	            text-align: center;
 	            background-color: #e0e3da;
+	            -ms-overflow-style: none;
+	            
 	        }
+	        ::-webkit-scrollbar {
+			display:none;
+			
+			}
+	        
     </style>
 </head>
-<body>
+<body style="width:100%; overflow-x:hidden;  overflow-y:hidden;">
 	<div>
         	<a class="btn btn-default" id="add-new-widget" href="#">Add Widget</a>
             <a class="btn btn-default" id="save-grid" href="#">Save Grid</a>
@@ -122,13 +133,14 @@
             <a class="btn btn-default" id="cal" href="#">addcal</a>
             <a class="btn btn-default" id="fix" href="#">allfix</a>
             <a class="btn btn-default" id="unfix" href="#">allunfix</a>
+            <a class="btn btn-default" id="resize" href="#">resize</a>
     </div>
 
 <div class="grid-stack">
    
     <div class="grid-stack-item" id="c"
         data-gs-x="0" data-gs-y="0" 
-        data-gs-width="4" data-gs-height="2">
+        data-gs-width="4" data-gs-height="2" id="first">
             <div class="grid-stack-item-content">
             <i class="fa fa-close"></i>
             <i class="fa fa-star"></i>
@@ -139,7 +151,7 @@
     
     <div class="grid-stack-item" 
         data-gs-x="4" data-gs-y="0" 
-        data-gs-width="4" data-gs-height="4">
+        data-gs-width="4" data-gs-height="4" id="second">
             <div class="grid-stack-item-content">
              <i class="fa fa-close"></i>
              <i class="fa fa-star"></i>
@@ -191,6 +203,7 @@ $(function () {
 	            el = $(this).closest('.grid-stack-item')
 	            grid.movable(el, false);
 	   	 		grid.resizable(el, false);
+	   	 	    grid.disableResize(true);
 	    });
 	   
 	    	 
@@ -255,10 +268,19 @@ $(function () {
 	       return false;
 	   }.bind(this);
 	   $('#load-grid').click(loadGrid); 
-		
-	   };
-    
-    
+	 
+	   <!--resize-->
+	   this.resize = function resize() {
+		    var grid = $('.grid-stack').data('gridstack');
+		    grid.batch_update();
+		    grid.resize($("#first"), 1, 1);
+		    grid.resize($("#second"), 1, 1);
+		    grid.commit();
+	   }
+	   $('#resize').click(this.resize); 
+	   
+    };
+       
  });
 </script>
 </body>
