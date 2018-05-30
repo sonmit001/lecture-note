@@ -1,0 +1,6 @@
+2017-06-26 13:21:25,636 DEBUG [net.java_school.bank.BankUi.main()] n.j.b.ShinhanBankDao [ShinhanBankDao.java:209] AccountNo:505 Amount:500 DEPOSIT/WITHDRAW:입금
+2017-06-26 14:00:50,483 DEBUG [net.java_school.bank.BankUi.main()] n.j.b.ShinhanBankDao [ShinhanBankDao.java:236] AccountNo:505 Amount:5000 DEPOSIT/WITHDRAW:입금
+2017-06-26 14:47:16,319 DEBUG [net.java_school.bank.BankUi.main()] n.j.c.TestLogger [TestLogger.java:19] deposit|505|500
+2017-06-26 14:50:07,036 DEBUG [net.java_school.bank.BankUi.main()] n.j.c.TestLogger [TestLogger.java:24] WITHDRAW|505|500
+2017-06-26 14:50:07,045 DEBUG [net.java_school.bank.BankUi.main()] n.j.c.TestLogger [TestLogger.java:24] WITHDRAW|505|500
+2017-06-26 14:51:29,859 DEBUG [net.java_school.bank.BankUi.main()] n.j.c.TestLogger [TestLogger.java:19] deposit|505|5000

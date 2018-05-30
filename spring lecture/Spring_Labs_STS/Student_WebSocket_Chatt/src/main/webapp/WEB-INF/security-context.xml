@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:security="http://www.springframework.org/schema/security"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+							http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+	<!-- 로그인 및 권한 설정 -->
+	<security:http use-expressions="true">
+		<security:csrf disabled="true" />
+		<security:form-login login-page="/login.htm"
+							 default-target-url="/index.htm"
+							 username-parameter="userid"
+							 password-parameter="password" />
+		<security:logout logout-success-url="/index.htm" />
+        <!-- <security:intercept-url pattern="/chat/**" access="hasAnyRole('ROLE_USER, ROLE_ADMIN')" /> -->
+        <security:session-management>
+        	<security:concurrency-control max-sessions="1" expired-url="/joinus/login.htm" />
+        </security:session-management>
+	</security:http>
+	
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:jdbc-user-service data-source-ref="driverManagerDataSource"
+										users-by-username-query="SELECT USERID, PASSWORD, 1 enabled FROM members WHERE userid=?"
+										authorities-by-username-query="select m.userid, r.auth 
+																		from members m join role r
+																		on m.userid = r.userid
+																		where m.userid=?" />
+			<security:password-encoder ref="bCryptPasswordEncoder"/>
+		</security:authentication-provider>
+	</security:authentication-manager>
+</beans>

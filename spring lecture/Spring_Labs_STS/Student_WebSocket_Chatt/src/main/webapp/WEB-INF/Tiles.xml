@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions> 
+	<!-- home.index -->
+	 <definition name="home.index" template="/WEB-INF/views/home/inc/layout.jsp">
+		<put-attribute name="title"   value="선화야 꽃길만 걷자" />
+		<put-attribute name="header"  value="/WEB-INF/views/home/inc/header.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/home/index.jsp" />
+		<put-attribute name="footer"  value="/WEB-INF/views/home/inc/footer.jsp" />
+	</definition>
+	<definition name="chat.chat" template="/WEB-INF/views/chat/inc/layout.jsp">
+		<put-attribute name="content" value="/WEB-INF/views/chat/chat.jsp" />
+	</definition>
+	<!-- join.login -->
+	<definition name="*.*" template="/WEB-INF/views/{1}/inc/layout.jsp">
+		<put-attribute name="title"   value="선화야 꽃길만 걷자" />
+		<put-attribute name="header" value="/WEB-INF/views/{1}/inc/header.jsp"/>
+		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/{1}/inc/footer.jsp"/>
+	</definition>
+</tiles-definitions>
+
+
+
+
+
+
+

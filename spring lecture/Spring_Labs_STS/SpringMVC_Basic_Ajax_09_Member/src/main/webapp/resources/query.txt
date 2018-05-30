@@ -1,0 +1,8 @@
+create table BLOG_USER
+(
+u_SEQ INT not null auto_increment primary key,
+U_ID varchar(200),
+U_PASSWORD varchar(200),
+U_MAIL varchar(200),
+U_NAME varchar(200)
+)

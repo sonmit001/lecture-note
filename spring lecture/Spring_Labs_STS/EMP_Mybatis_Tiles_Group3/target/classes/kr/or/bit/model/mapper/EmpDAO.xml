@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.or.bit.model.EmpDAO">
+	 <!-- insert -->
+		 <insert id="insertEmp" statementType="CALLABLE" parameterType="kr.or.bit.model.EmpDTO">
+		    {CALL insert_emp (#{empno},#{ename} ,#{job} ,#{mgr} ,#{hiredate} ,#{sal} ,#{comm} , #{deptno},#{outmsg, mode=OUT, jdbcType=VARCHAR} )}
+		 </insert>
+	 <!-- update -->
+	 <update id="updateEmp" parameterType="kr.or.bit.model.EmpDTO">
+	  update emp 
+	  set ename = #{ename} , job = #{job} ,   mgr = #{mgr} , hiredate = #{hiredate} , sal = #{sal} ,comm = #{comm} ,  deptno = #{deptno} 
+	  where  empno=#{empno}
+	 </update>
+	 <!-- delete-->
+	 <delete id="deleteEmp" parameterType="Integer">
+	  delete from emp  where  empno=#{empno}s
+	 </delete>
+	 <!-- List(전체조회) -->
+	 <select id="getEmpList" resultType="kr.or.bit.model.EmpDTO">
+	       select * from emp
+	 </select>
+	 <!-- 단일 조회 -->
+	
+		 <select id="getEmp" parameterType="kr.or.bit.model.EmpDTO" statementType="CALLABLE" resultType="kr.or.bit.model.EmpDTO">
+				{CALL EmpList (#{empno},#{empList , mode=OUT, jdbcType=CURSOR, javaType=java.sql.ResultSet , resultMap=kr.or.bit.model.EmpDTO})}
+		</select>
+</mapper>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.or.kosta.dao.EmpDAO">
+	
+	<select id="loginEmp" resultType="kr.or.kosta.dto.emp">
+		select ENAME,EMPNO from emp where ENAME=#{param1} and EMPNO=${param2}
+	</select>
+	
+	
+	<select id="getEmpList" resultType="kr.or.kosta.dto.emp">
+		select * from
+				( select rownum rn , EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO
+		          from (
+		                SELECT * FROM emp
+		                ) where rownum &lt;= ${param1} * ${param2}   
+				) where rn >=  ${param1} * ${param2} - (${param2} -1)
+	</select>
+	
+	<!-- emp사원 총 수  -->
+	<select id="totalboardCount" resultType="Integer">
+		select count(*) cnt from emp
+	</select>
+	
+	
+	<insert id="joinEmp">
+		insert into emp(empno,ename,job,mgr,hiredate,sal,comm,deptno) 
+		values(#{empno},#{ename},#{job},#{mgr},#{hiredate},#{sal},#{comm},#{deptno})
+	</insert>
+	
+	
+	<update id="editEmp">
+		update emp set ename=#{ename}, job=#{job}, mgr=#{mgr}, sal=#{sal}, comm=#{comm}, deptno=#{deptno} 
+		where empno=#{empno}
+	</update>
+	
+	
+	<delete id="delEmp">
+		delete from emp where empno=#{empno}
+	</delete>
+	
+	<select id="getSearch" parameterType="hashmap" resultType="kr.or.kosta.dto.emp">
+	  SELECT * FROM emp 
+	    <choose>
+			<when test='ename!=null'>
+				where ename like '%${ename}%'
+			</when>
+			<otherwise>
+				where deptno=#{deptno}
+			</otherwise>
+		</choose>
+	</select>
+	<select id="multiEmpSearch" parameterType="hashmap" resultType="kr.or.kosta.dto.emp">
+		select * from emp
+		<where>
+			<if test="ename != null">
+				ename like '%${keyvalue}%'
+			</if>
+			<if test="deptno != null">
+				 or deptno like '%${keyvalue}%'
+			</if>
+			<if test="empno != null">
+			     or empno like '%${keyvalue}%'
+			</if>
+		</where>
+	</select>
+	
+	
+	
+</mapper>	
+	
+	
+	
+	
+	
+	
+	

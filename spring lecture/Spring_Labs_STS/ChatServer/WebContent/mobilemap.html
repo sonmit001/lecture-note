@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Google Map UI</title>
+        <meta charset="EUC-KR">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+		<script src="js/jquery-1.11.3.min.js"></script>
+		<script src="js/jquery.mobile-1.4.5.min.js"></script>
+        <script src="ui/min/jquery.ui.map.full.min.js"></script>
+        <script src="ui/jquery.ui.map.extensions.js"></script>
+        <script charset="euc-kr" src="cordova.js"></script>
+        <style>
+            .map_style{ padding: 0px; width: 100%; height: 100%}
+        </style>
+        <script>
+            $(document).ready(function(){
+            	// 위도와 경도를 설정
+                var statrtLatLng = new google.maps.LatLng(37.402994, 127.108516);
+                $("#map_canvas").gmap({"center":statrtLatLng,"zoom":16});
+                // 현재 위치 바를 클릭 
+                $("#current_location").click(function(){
+                    $("#map_canvas").gmap("getCurrentPosition",function(position,status){
+                        if(status ==="OK"){
+                        	//GPS 값을 돌려주는 라이브러리 => position.coords.latitude, longitude
+                            var latlng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+                            var markerBlue = "img/heri.jpg";
+                            $("#map_canvas").gmap("get","map").panTo(latlng);
+                           // $("#map_canvas").gmap("addMarker",{"position":latlng,"icon":markerBlue});
+                           var $marker = $("#map_canvas").gmap("addMarker",{"position":latlng,"icon":markerBlue});
+                           $marker.click(function(){
+                               $('#map_canvas').gmap('openInfoWindow', {'content': '>>ㅑ~~~~~!'}, this);
+                           });
+                        }else{
+                            alert('현재 위치를 찾을 수 없습니다.');
+                        }
+                    });
+                });
+            });
+        </script>
+        
+    </head>
+    <body>
+        <div data-role="page" id="page" class="map_style" data-fullscreen="true" >
+            <div data-role="header">
+                <h1>KOSTA 위치</h1>
+            </div>
+            <div data-role="content" class="map_style">
+                <div id="map_canvas" class="map_style"></div>
+            </div>
+            <div data-role="footer" data-position="fixed">
+                <div data-role="navbar">
+                    <ul>
+                        <li>
+                            <a href="#" data-icon="search" id="current_location">현재 위치 찾기</a>
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+    </body>
+</html>

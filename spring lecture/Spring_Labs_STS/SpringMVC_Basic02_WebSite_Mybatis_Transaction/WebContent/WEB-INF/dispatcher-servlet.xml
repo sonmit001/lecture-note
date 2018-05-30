@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/tx
+ 						   http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<context:annotation-config/>
+	<context:component-scan base-package="ncontroller"/>
+	<context:component-scan base-package="service"/>
+
+	<bean id="memberDao" class="dao.NewMemberDao"/>
+	
+	<!-- Tiles 설정 (Bean 객체 생성 주입) -->
+	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+	 <property name="definitions">
+	  <list>
+	   <value>/WEB-INF/Tiles.xml</value>
+	  </list>
+	 </property>
+	</bean>
+	<!-- 
+		public String form(){
+			return "customer.notice"
+			>>urlBasedViewResolver >> url값으로
+			>>적용은 : files로 하겟다.
+			 <definition name="*.*" template="/WEB-INF/views/{1}/inc/layout.jsp"> 
+			>>{1}/{2}.jsp
+			>>customer/notice.jsp 를 client에게 전달
+		}
+	 -->
+	<bean id="urlBasedViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+	 <property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
+	</bean> 
+	
+	<!-- transaction 설정 -->
+   <bean id="transactionManager" 
+   			  class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+  			 <property name="dataSource" ref="driverManagerDataSource" /> <!-- root container의 bean객체의 아이디를 가져다 쓴다. -->
+   </bean>
+   <!-- AOP기반 (x)
+   		   xml기반 (o) >> Annotaion기반으로 사용
+    Ex> @Autowired 사용하려면
+    		org.springframework.beans.factory.annotation.AutowiredAnnotaionBeanPostProccess를 bean으로 등록해야한다.
+    		>>자동화 한것이 <context:annotaion-config>이다.
+    		
+    		transaction을 자동화 한것이
+    		 <tx:annotation-driven transaction-manager="transactionManager"/>이다.
+    -->
+     <tx:annotation-driven transaction-manager="transactionManager"/>
+</beans>
+
+
+
+

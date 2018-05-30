@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.NoticeDao">
+	<!-- //게시물 개수
+	public int getCount(String field, String query) throws ClassNotFoundException, SQLException;
+	//전체 게시물
+	public List<Notice> getNotices(int page, String field, String query) throws ClassNotFoundException, SQLException;
+	//게시물 삭제
+	public int delete(String seq) throws ClassNotFoundException, SQLException;
+	//게시물 수정
+	public int update(Notice notice) throws ClassNotFoundException, SQLException;
+	//게시물 상세
+	public Notice getNotice(String seq) throws ClassNotFoundException, SQLException;
+	//게시물 입력
+	public int insert(Notice n) throws ClassNotFoundException, SQLException;  -->
+	
+	<!-- 게시물 개수 -->
+	<!-- 
+			parameter 1개 생략
+			parameter 2이상 DTO없을 때 Hashmap으로
+			parameter 2이상 DTO있을 때 DTO로 parameter type을 쓴다.
+			
+			key point
+			parameter 1개  생략: #{value}
+			parameter 2개 이상: getCount(String field, String query)
+			
+			1. 순서대로 처리
+			> String field > param1,
+			> String query > param2
+	 -->
+	<select id="getCount" resultType="Integer">
+			SELECT COUNT(*) CNT 
+			FROM NOTICES 
+			WHERE ${param1} LIKE '%${param2}%'
+	</select>
+	<!-- 
+	parameter logic
+		int srow = 1 + (page-1)*5;
+		int erow = 5 + (page-1)*5; 
+		
+		return이 알아서 List<Notice>로 만든다. > 여러건
+		return notice > 1건
+	 -->
+	<select id="getNotices" resultType="vo.Notice">
+		SELECT * FROM
+					(SELECT ROWNUM NUM, N.* 
+					FROM (SELECT * FROM NOTICES WHERE ${param2} LIKE '%${param3}%' ORDER BY REGDATE DESC) N)
+		WHERE NUM BETWEEN 1 + (${param1}-1)*5 AND 5 + (${param1}-1)*5
+	</select>
+	<select id="getNotice" resultType="vo.Notice">
+		SELECT seq,title,writer,content,regdate,hit,filesrc,filesrc2 
+		FROM NOTICES 
+		WHERE SEQ= #{seq}
+	</select>
+	
+	<delete id="delete" >
+		DELETE NOTICES WHERE SEQ=#{seq}
+	</delete>
+
+	
+<!-- 	<insert id="insert">
+	INSERT INTO NOTICES(SEQ, TITLE, CONTENT, WRITER, REGDATE, HIT, FILESRC , FILESRC2) 
+	VALUES( (SELECT MAX(TO_NUMBER(SEQ))+1 FROM NOTICES), ${title}, ${content}, 'newleckosta', 
+	SYSDATE, ${hit},#{fileSrc,jdbcType=VARCHAR},#{fileSrc2,jdbcType=VARCHAR})
+	</insert> 
+	이렇게 해도 된다. 연습으로 다른 것 사용
+	-->
+	<insert id="insert">
+		<selectKey order="BEFORE" keyProperty="seq" resultType="String">
+			SELECT MAX(TO_NUMBER(SEQ))+1 FROM NOTICES
+		</selectKey>
+		INSERT INTO NOTICES(SEQ, TITLE, CONTENT, WRITER, REGDATE, HIT, FILESRC , FILESRC2) 
+	    VALUES(#{seq}, #{title}, #{content}, 'bituser', 
+	    								SYSDATE, #{hit},#{fileSrc,jdbcType=VARCHAR},#{fileSrc2,jdbcType=VARCHAR})
+	</insert>
+	<!-- 
+		#{fileSrc,jdbcType=VARCHAR} >> 값이 없을 경우 기본타입으로 update
+	 -->
+	<update id="update">
+	UPDATE NOTICES 
+	SET TITLE=#{title}, CONTENT=#{content}, FILESRC=#{fileSrc,jdbcType=VARCHAR} , FILESRC2=#{fileSrc2,jdbcType=VARCHAR} 
+	WHERE SEQ=#{seq}
+	</update>
+</mapper>

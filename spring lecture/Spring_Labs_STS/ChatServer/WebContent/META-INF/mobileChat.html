@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/jquery.mobile-1.4.5.min.js"></script>
+<script>
+$(function() {
+var puts = [];
+var varData
+	console.log("typeof:" + typeof (EventSource));
+	if (typeof (EventSource) != "undefined") { //push를 받을 수 있는 브라우저인지 판단 (타입오브 -> 객체의 타입확인)
+		
+	var eventSource = new EventSource(
+				"chatload.jsp", {
+					withCredentials : true
+				});
+
+		
+		// EventSource EventListener의 종류
+		// onmessage : 서버가 보낸 push 메세지가 수신되면 발생(리스너)
+		// onerror : 서버가 보낸 push에서 에러가 발생되었을 때 발생
+		// onopen : 서버가 연결이 되었을 때 발생
+		eventSource.onmessage = function(event) {
+			
+			
+			//리스너형식으로 돌아가고 있는 콜백함수
+			//alert(event.data);
+			//$("#target").html(
+			//		"<div style='background:orange'>" + event.data + "</div>");
+			varData = event.data;
+			puts = varData.split(":");
+			console.log(puts);
+			$('#content p').html("<ul data-role='listview' data-inset='true' class='listview'></ul>");
+			$('#content p ul').addClass("listview")
+			$.each(puts,function(e,v){
+				$('#content p ul').append("<li>"+v+"</li>");
+			});
+			//$('.listview').listview('refresh');
+			$('#content p ul li').addClass('ui-btn ui-btn-icon-right ui-icon-carat-r')
+		};
+	
+	
+	} else {
+		//$("#target").html("해당 브라우저는 지원이 안됩니다.")
+	}
+	
+  // send
+	 $("form").submit(function(){
+		   var fdata = {
+		     u_id:encodeURIComponent($("#u_id").val()),
+		     chat:encodeURIComponent($("#chat").val())};
+		   $.ajax({ //ajax로 보냄
+		    type:"POST", //헤더에 넣어서보냄 (URL로 안보임)
+		    url:"http://192.168.0.51/andserver/chat_add.jsp",
+		    data:fdata
+		   });
+		   return false;//서브밋후에 페이지가 안바뀌도록 false리턴
+		  });
+	});
+</script>
+</head>
+<body>
+	<section data-role="page" id="first">
+		<header data-role="header" data-theme="a">
+			<h1>My First Page!</h1>
+		</header>
+		<div data-role="content" id="content">
+		<p></p>
+		<form method="post" name="f">
+			<div data-role="fieldcontain">
+				<label for="u_id"> 이  름	</label>
+				<input type="text" name="u_id" id="u_id"/>
+			</div>
+			<div data-role="fieldcontain">
+				<label for="chat"> 채 팅	</label>
+				<input type="text" name="chat" id="chat"/>
+			</div>
+			<div data-role="fieldcontain">
+			<input type="submit" value="보내기">
+			</div>
+		</form>	
+		
+		</div>
+		<footer data-role="footer" data-position="fixed"
+			>
+			<h2>Footer!</h2>
+		</footer>
+	</section>
+</body>
+</html>

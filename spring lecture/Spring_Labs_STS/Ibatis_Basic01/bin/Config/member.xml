@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap
+PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<!-- ORM 객체 매핑  
+     input  parameter > java bean //void insert(Board board){}
+     output parameter > java bean //Board select(){}
+       기존의 SQL 구문은 Map 파일 구현
+       
+       //내부적으로 
+       select가 실행 -> 결과를 가져와서 resultClass를 기준으로 객체를 만든다. 밑에는 Emp객체를 만든다. -> setter (자동 주입) -> Emp->Emp객체 주소 리턴
+ -->
+ <sqlMap>
+ 	<select id="selectEmp" parameterClass="java.lang.String" resultClass="Ibatis.dto.Emp">
+ 		select empno,ename,job,sal 
+ 		from emp
+ 		where ename=#ename# <!-- Ibatis문법 #parameter# -->
+ 	</select>
+ 	<insert id="insertEmp" parameterClass="Ibatis.dto.Emp">
+ 		insert into emp(empno,ename,job,sal)
+ 		values(#empno#,#ename#,#job#,#sal#)
+ 	</insert>
+ </sqlMap>

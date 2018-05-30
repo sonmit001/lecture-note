@@ -1,0 +1,10 @@
+create table members(
+userid varchar2(50), 
+password varchar2(200), 
+nickname varchar2(100)
+);
+
+CREATE TABLE ROLE (
+userid varchar2(50), 
+auth varchar2(100)
+);

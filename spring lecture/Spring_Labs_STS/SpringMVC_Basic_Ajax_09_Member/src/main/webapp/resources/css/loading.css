@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+#loadingImage{  
+	  position:absolute;  
+	  z-index:5001;  
+	  background-color:#FFFFFF;  
+	  display:none;  
+	  left:0;
+	  top:0;
+	} 	
+#loadingMask{  
+	  position:absolute;  
+	  z-index:5000;  
+	  background-color:#FFFFFF;  
+	  display:none;  
+	  left:0;
+	  top:0;
+	} 		
