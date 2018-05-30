@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="D:/bitcamp104/Spring/과제/1차_AOP/4조/lib/aspectj-weaver.jar"/>
+	<classpathentry kind="lib" path="D:/bitcamp104/Spring/과제/1차_AOP/4조/lib/com.springsource.org.aopalliance-1.0.0.jar"/>
+	<classpathentry kind="lib" path="D:/bitcamp104/Spring/과제/1차_AOP/4조/lib/com.springsource.org.apache.commons.fileupload-1.2.0.jar"/>
+	<classpathentry kind="lib" path="D:/bitcamp104/Spring/과제/1차_AOP/4조/lib/com.springsource.org.apache.commons.io-1.4.0.jar"/>
+	<classpathentry kind="lib" path="D:/bitcamp104/Spring/과제/1차_AOP/4조/lib/com.springsource.org.apache.commons.logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="D:/bitcamp104/Spring/과제/1차_AOP/4조/lib/javax.servlet.jsp.jstl-1.2.1.jar"/>
+	<classpathentry kind="lib" path="D:/bitcamp104/Spring/과제/1차_AOP/4조/lib/javax.servlet.jsp.jstl-api-1.2.1.jar"/>
+	<classpathentry kind="lib" path="D:/bitcamp104/Spring/과제/1차_AOP/4조/lib/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="D:/bitcamp104/Spring/과제/1차_AOP/4조/lib/spring-aop-4.2.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="D:/bitcamp104/Spring/과제/1차_AOP/4조/lib/spring-beans-4.2.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="D:/bitcamp104/Spring/과제/1차_AOP/4조/lib/spring-context-4.2.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="D:/bitcamp104/Spring/과제/1차_AOP/4조/lib/spring-core-4.2.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="D:/bitcamp104/Spring/과제/1차_AOP/4조/lib/spring-expression-4.2.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="D:/bitcamp104/Spring/과제/1차_AOP/4조/lib/spring-web-4.2.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="D:/bitcamp104/Spring/과제/1차_AOP/4조/lib/spring-webmvc-4.2.5.RELEASE.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
