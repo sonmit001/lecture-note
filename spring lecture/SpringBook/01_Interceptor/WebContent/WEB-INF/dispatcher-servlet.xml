@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+      xmlns:context="http://www.springframework.org/schema/context"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/beans
+                          http://www.springframework.org/schema/beans/spring-beans.xsd
+                          http://www.springframework.org/schema/context
+                          http://www.springframework.org/schema/context/spring-context.xsd
+                          http://www.springframework.org/schema/mvc
+                          http://www.springframework.org/schema/mvc/spring-mvc.xsd"
+      xmlns:mvc="http://www.springframework.org/schema/mvc">
+
+<context:annotation-config />
+<context:component-scan base-package="ncontroller" />
+
+<bean id="noticeDao" class="dao.NewNoticeDao"></bean>
+<bean id="memberDao" class="dao.NewMemberDao"></bean>
+
+<!-- inter -->
+<mvc:interceptors>
+	<mvc:interceptor>
+		<mvc:mapping path="/customer/**" />
+	<!-- 	<mvc:exclude-mapping path="/customer/notice.htm"/> --> 
+		<bean id ="exInterceptor" class ="inter.ExInterceptor"/>
+	</mvc:interceptor>
+	<mvc:interceptor>
+		<mvc:mapping path="/joinus/loginok.htm" />
+		<bean id ="loginsessionInterception" class ="inter.loginsessionInterception"/>
+	</mvc:interceptor>
+</mvc:interceptors>
+
+<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+	 <property name="definitions">
+		  <list>
+		   <value>/WEB-INF/Tiles.xml</value>
+		  </list>
+	 </property>
+</bean>
+<!--  
+   public String form(){
+   
+    return "customer.notice"; 
+    >>urlBasedViewResolver  >> customer.notice url 媛믪쑝濡?.....
+    >>?곸슜? :TilesView 濡??섍쿋??
+    
+    
+     <definition name="*.*" template=""
+     {1}/{2}.jsp
+     >>customer/notice.jsp  ??client ?꾨떖 ....
+     
+   }
+
+-->
+<bean id="urlBasedViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+ 	<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
+</bean> 
+</beans>
+
+
+
+
